@@ -73,14 +73,12 @@ end
 
 def starts_with_consonant? s
   # YOUR CODE HERE
-  consonant_arr = ['A','E','I','O','U']
   if s.size > 0
     str = ""+s[0,1]
-    str = str.upcase
-    if consonant_arr.include? str
-      return false
-    elsif str>= 'A' and str<='Z'
-      return true
+    if !(str !~ /[[:alpha:]]/)
+      if str =~ /[^AEIOUaeiou]/
+        return true
+      end
     end
   end
   return false
@@ -88,21 +86,20 @@ end
 
 def binary_multiple_of_4? s
   # YOUR CODE HERE
-  if s.size>0
-    i=0
-    while i < s.size
-      if !(s[i]=='0' or s[i]=='1')
-        return false
+  len = s.length
+  if len>0
+    if s !~ /[^01]/
+       
+      if len ==1 and s[len-1]=='0'
+        return true
+      elsif len >1 and s[len-1]=='0' and s[len-2]=='0'
+        return true
       end
-      i+=1
     end
-    if s.to_i % 4 == 0
-      return true
-    end
-    
   end
   return false
 end
+
 
 # Part 3
 
